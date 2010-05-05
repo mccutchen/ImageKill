@@ -1,9 +1,12 @@
 {
     "name": "ImageKill",
     "version": "0.1",
-    "content_scripts": [{
-        "matches": ["http://*/*"],
-        "js": ["imagekill.js"],
-        "run_at": "document_end"
-    }]
+    "background_page": "background.html",
+    "browser_action": {
+        "default_icon": "images/imagekill.png",
+        "default_title": "ImageKill"
+    },
+    "permissions": [
+        "tabs", "http://*/*"
+  ]
 }
