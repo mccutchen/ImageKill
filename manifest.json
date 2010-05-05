@@ -3,7 +3,7 @@
     "version": "0.1",
     "background_page": "background.html",
     "browser_action": {
-        "default_icon": "images/imagekill.png",
+        "default_icon": "icon.png",
         "default_title": "ImageKill"
     },
     "permissions": [
