@@ -1,5 +1,6 @@
 {
     "name": "ImageKill",
+    "description": "Kills every image on the page.  Kills 'em dead.",
     "version": "0.1",
     "background_page": "background.html",
     "browser_action": {
