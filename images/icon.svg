@@ -19,9 +19,9 @@
    sodipodi:docname="icon.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape"
    version="1.1"
-   inkscape:export-filename="/Users/will/Desktop/icon32.png"
-   inkscape:export-xdpi="22.500002"
-   inkscape:export-ydpi="22.500002"><metadata
+   inkscape:export-filename="/Users/will/Desktop/icon16.png"
+   inkscape:export-xdpi="11.25"
+   inkscape:export-ydpi="11.25"><metadata
    id="metadata16236">
   <rdf:RDF>
     <cc:Work
@@ -383,8 +383,8 @@
    bordercolor="#666666"
    pagecolor="#ffffff"
    id="base"
-   inkscape:zoom="2"
-   inkscape:cx="-8.6767552"
+   inkscape:zoom="0.5"
+   inkscape:cx="-16.168952"
    inkscape:cy="61.732211"
    inkscape:window-x="0"
    inkscape:window-y="30"
@@ -606,5 +606,5 @@
    inkscape:export-xdpi="260.84"
    inkscape:export-ydpi="260.84" /><path
    id="path3096"
-   style="opacity:0.75;fill:none;stroke:#af0000;stroke-width:8.0629921;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-   d="M 5.0393701,5.0393701 123.9685,123.9685 m 0,-119.9370039 L 4.0314961,123.9685" /></svg>
+   style="opacity:0.75;fill:none;stroke:#af0000;stroke-width:15.06580257;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+   d="M 8.4819281,8.4819279 120.4671,120.4671 m 0,-112.934199 L 7.5329012,120.4671" /></svg>
