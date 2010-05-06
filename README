@@ -9,13 +9,11 @@ Chrome extensions.
 NOTES
 -----
 
-Right now, this just kills images that are in actual <img> elements on the
-page.
-
 The ImageKill icon is based on the image-x-generic mimetype icon from the
 Tango Icon Library (http://tango.freedesktop.org/Tango_Icon_Library).  Really,
 it's just that icon with a simple X overlaid on it in Inkscape.
 
 TODO
 ----
-* Kill CSS background images
+
+* Test this on more pages.  It works pretty well in my own limited use.
