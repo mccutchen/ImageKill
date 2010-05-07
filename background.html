@@ -4,8 +4,13 @@
         0: 'Kill Images',
         1: 'Restore Images'
     };
-    // Set the initial title
+    var icons = {
+        0: 'images/icon32.png',
+        1: 'images/restore32.png'
+    };
+    // Set the initial state
     chrome.browserAction.setTitle({title: titles[killed]});
+    chrome.browserAction.setIcon({path: icons[killed]});
     // Handle clicks
     chrome.browserAction.onClicked.addListener(function(tab) {
         // If we're already killed, refresh the tab
@@ -17,5 +22,6 @@
         }
         killed = killed ? 0 : 1;
         chrome.browserAction.setTitle({title: titles[killed]});
+        chrome.browserAction.setIcon({path: icons[killed]});
     });
 </script>
