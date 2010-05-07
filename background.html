@@ -1,5 +1,21 @@
 <script>
+    var killed = 0;
+    var titles = {
+        0: 'Kill Images',
+        1: 'Restore Images'
+    };
+    // Set the initial title
+    chrome.browserAction.setTitle({title: titles[killed]});
+    // Handle clicks
     chrome.browserAction.onClicked.addListener(function(tab) {
-    	chrome.tabs.insertCSS(null, { file: 'imagekill.css' });
+        // If we're already killed, refresh the tab
+        if (killed) {
+            chrome.tabs.update(tab.id, { url: tab.url });
+        // Otherwise, kill the images
+        } else {
+            chrome.tabs.insertCSS(null, { file: 'css/kill.css' });
+        }
+        killed = killed ? 0 : 1;
+        chrome.browserAction.setTitle({title: titles[killed]});
     });
 </script>

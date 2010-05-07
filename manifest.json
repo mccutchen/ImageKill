@@ -11,8 +11,7 @@
           "tabs", "http://*/*"
     ],
     "browser_action": {
-        "default_icon": "images/icon48.png",
-        "default_title": "ImageKill"
+        "default_icon": "images/icon48.png"
     },
     "background_page": "background.html"
 }
