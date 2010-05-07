@@ -16,4 +16,5 @@ it's just that icon with a simple X overlaid on it in Inkscape.
 TODO
 ----
 
+* Reset state when changing tabs
 * Test this on more pages.  It works pretty well in my own limited use.
