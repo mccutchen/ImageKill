@@ -1,5 +1,9 @@
 <script>
+(function() {
+    // Flag to tell us if we've killed images yet
     var killed = 0;
+
+    // Map killed states (1 or 0) to button titles and icons
     var titles = {
         0: 'Kill Images',
         1: 'Restore Images'
@@ -8,20 +12,25 @@
         0: 'images/icon32.png',
         1: 'images/restore32.png'
     };
-    // Set the initial state
-    chrome.browserAction.setTitle({title: titles[killed]});
-    chrome.browserAction.setIcon({path: icons[killed]});
-    // Handle clicks
-    chrome.browserAction.onClicked.addListener(function(tab) {
-        // If we're already killed, refresh the tab
-        if (killed) {
-            chrome.tabs.update(tab.id, { url: tab.url });
-        // Otherwise, kill the images
-        } else {
-            chrome.tabs.insertCSS(null, { file: 'css/kill.css' });
-        }
-        killed = killed ? 0 : 1;
+
+    // Updates the title and icon of the button depending on the killed state
+    function updateButton() {
         chrome.browserAction.setTitle({title: titles[killed]});
         chrome.browserAction.setIcon({path: icons[killed]});
+    }
+
+    // Handle button clicks
+    chrome.browserAction.onClicked.addListener(function(tab) {
+        if (!killed) {
+            chrome.tabs.insertCSS(null, { file: 'css/kill.css' });
+        } else {
+            chrome.tabs.executeScript(null, { file: 'js/restore.js' });
+        }
+        killed = killed ? 0 : 1;
+        updateButton();
     });
+
+    // Set the initial state of the button
+    updateButton();
+})();
 </script>
