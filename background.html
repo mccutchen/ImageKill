@@ -30,7 +30,17 @@
         updateButton();
     });
 
-    // Set the initial state of the button
+    // Wire up events to reset our internal state when we're looking at a
+    // new tab or window. FIXME: This will forget the state of tabs for which
+    // we've already killed images.
+    function reset(tab) {
+        killed = 0;
+        updateButton();
+    }
+    chrome.tabs.onSelectionChanged.addListener(reset);
+    chrome.windows.onFocusChanged.addListener(reset);
+
+    // Set the initial state of the button when we're first loaded.
     updateButton();
 })();
 </script>
