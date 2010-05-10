@@ -1,10 +1,18 @@
 ImageKill
 =========
 
-An extremely simple Chrome extension that adds a button to the toolbar which
-will, when clicked, kill all the images on the current page.  Written because
-I needed this functionality and wanted to learn a little bit about writing
-Chrome extensions.
+An extremely simple Chrome extension that adds a button to the address bar
+which will kill all the images on the current page.  Another click will
+restore the images.
+
+I wrote this because I wanted this functionality and wanted to learn a little
+bit about writing Chrome extensions.
+
+
+HOME PAGE
+---------
+http://github.com/mccutchen/ImageKill
+
 
 NOTES
 -----
@@ -13,8 +21,8 @@ The ImageKill icon is based on the image-x-generic mimetype icon from the
 Tango Icon Library (http://tango.freedesktop.org/Tango_Icon_Library).  Really,
 it's just that icon with a simple X overlaid on it in Inkscape.
 
+
 TODO
 ----
 
-* Reset state when changing tabs
 * Test this on more pages.  It works pretty well in my own limited use.
