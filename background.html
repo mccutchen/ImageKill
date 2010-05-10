@@ -1,7 +1,7 @@
 <script>
 (function() {
-    // Flag to tell us if we've killed images yet
-    var killed = 0;
+    // Keep track of the "killed" states of tabs, by ID
+    var tabStates = {};
 
     // Map killed states (1 or 0) to button titles and icons
     var titles = {
@@ -13,34 +13,43 @@
         1: 'images/restore32.png'
     };
 
-    // Updates the title and icon of the button depending on the killed state
-    function updateButton() {
-        chrome.browserAction.setTitle({title: titles[killed]});
-        chrome.browserAction.setIcon({path: icons[killed]});
+    // Updates the title and icon of the icon depending on the tab's killed
+    // state.
+    function updateButton(tab) {
+        var killed = tabStates[tab.id];
+        chrome.pageAction.setTitle({tabId: tab.id, title: titles[killed]});
+        chrome.pageAction.setIcon({tabId: tab.id, path: icons[killed]});
     }
 
-    // Handle button clicks
-    chrome.browserAction.onClicked.addListener(function(tab) {
+    // Handle click events on the icon by either killing or restoring the
+    // images (etc) in the tab, and updating the tab's killed state and its
+    // icon. This should only be wired up once, not once per tab.
+    function onClicked(tab) {
+        var killed = tabStates[tab.id];
         if (!killed) {
-            chrome.tabs.insertCSS(null, { file: 'css/kill.css' });
+            chrome.tabs.insertCSS(tab.id, { file: 'css/kill.css' });
         } else {
-            chrome.tabs.executeScript(null, { file: 'js/restore.js' });
+            chrome.tabs.executeScript(tab.id, { file: 'js/restore.js' });
         }
-        killed = killed ? 0 : 1;
-        updateButton();
-    });
-
-    // Wire up events to reset our internal state when we're looking at a
-    // new tab or window. FIXME: This will forget the state of tabs for which
-    // we've already killed images.
-    function reset(tab) {
-        killed = 0;
-        updateButton();
+        tabStates[tab.id] = killed ? 0 : 1;
+        updateButton(tab);
     }
-    chrome.tabs.onSelectionChanged.addListener(reset);
-    chrome.windows.onFocusChanged.addListener(reset);
 
-    // Set the initial state of the button when we're first loaded.
-    updateButton();
+    // Add an event listener for this extension.  When tabs are loaded,
+    // they'll make a request to the extension to let it know to set up
+    // the page action for that tab.
+    chrome.extension.onRequest.addListener(
+        function(request, sender, sendResponse) {
+            // Only register our event handler once
+            if (!chrome.pageAction.onClicked.hasListener(onClicked))
+                chrome.pageAction.onClicked.addListener(onClicked);
+            // Initialize this tab's state to 0 (which means not killed)
+            tabStates[sender.tab.id] = 0;
+            // Initialize the icon and tooltip for this tab
+            updateButton(sender.tab);
+            // Show the icon
+            chrome.pageAction.show(sender.tab.id);
+        }
+    );
 })();
 </script>
